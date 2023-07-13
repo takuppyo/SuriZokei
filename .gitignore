@@ -1,0 +1,12 @@
+*.class
+*.log
+/bin
+/target
+/build
+/.gradle
+/logs
+
+# Package Files #
+*.jar
+*.war
+*.ear
