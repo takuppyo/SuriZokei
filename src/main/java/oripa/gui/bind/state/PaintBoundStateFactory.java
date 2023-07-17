@@ -15,6 +15,7 @@ import oripa.gui.presenter.creasepattern.MirrorCopyAction;
 import oripa.gui.presenter.creasepattern.MouseActionSetterFactory;
 import oripa.gui.presenter.creasepattern.PerpendicularBisectorAction;
 import oripa.gui.presenter.creasepattern.SelectLineAction;
+import oripa.gui.presenter.creasepattern.SuggestionAction;
 import oripa.gui.presenter.creasepattern.SymmetricalLineAction;
 import oripa.gui.presenter.creasepattern.TriangleSplitAction;
 import oripa.gui.presenter.creasepattern.TwoPointLineAction;
@@ -258,9 +259,9 @@ public class PaintBoundStateFactory {
 			return angleSnapFactory.create(
 					new AngleSnapAction(), changeHint, null);
 
-//		case StringID.SUGGESTION_ID:
-//			return stateFactory.create(
-//					new SuggestionAction(), changeHint, null);
+		case StringID.SUGGESTION_ID:
+			return stateFactory.create(
+					new SuggestionAction(), changeHint, null);
 //
 		}
 

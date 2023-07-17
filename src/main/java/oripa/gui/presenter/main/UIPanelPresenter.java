@@ -236,8 +236,8 @@ public class UIPanelPresenter {
 
 		view.addAngleStepComboListener(step -> paintContext.setAngleStep(AngleStep.fromString(step).get()));
 
-//		var suggestionState = bindingFactory.createState(StringID.SUGGESTION_ID);
-//		view.addLineInputSuggestionButtonListener(suggestionState::performActions, keyProcessing);
+		var suggestionState = bindingFactory.createState(StringID.SUGGESTION_ID);
+		view.addLineInputSuggestionButtonListener(suggestionState::performActions, keyProcessing);
 
 		view.addLineTypeMountainButtonListener(() -> paintContext.setLineTypeOfNewLines(OriLine.Type.MOUNTAIN));
 		view.addLineTypeValleyButtonListener(() -> paintContext.setLineTypeOfNewLines(OriLine.Type.VALLEY));

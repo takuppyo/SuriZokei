@@ -22,6 +22,7 @@ import java.io.FileReader;
 import java.io.StreamTokenizer;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 import javax.vecmath.Vector2d;
 
@@ -30,6 +31,7 @@ import oripa.domain.cptool.ElementRemover;
 import oripa.domain.cptool.Painter;
 import oripa.domain.creasepattern.CreasePattern;
 import oripa.domain.creasepattern.CreasePatternFactory;
+import oripa.domain.fold.halfedge.OriVertex;
 import oripa.domain.fold.halfedge.OrigamiModel;
 import oripa.domain.fold.halfedge.OrigamiModelFactory;
 import oripa.geom.GeomUtil;
@@ -44,10 +46,12 @@ public class LoaderSVG implements DocLoader {
 	private final double pointEps = GeomUtil.pointEps();
 	private final ElementRemover elementRemover = new ElementRemover();
 	private Collection<OriLine> overlappingLines;
+	private Collection<OriVertex> violatingVertices;
 
 	@Override
 	public Doc load(final String filePath) {
 		var lines = new ArrayList<OriLine>();
+		Collection<OriVertex> checkVertex;
 
 		try (var r = new FileReader(filePath)) {
 			StreamTokenizer st = new StreamTokenizer(r);
@@ -138,7 +142,7 @@ public class LoaderSVG implements DocLoader {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		/*
+		/*削除処理の名残
 		CreasePatternFactory factory = new CreasePatternFactory();
 		CreasePattern creasePattern = factory
 				.createCreasePattern(lines);
@@ -149,7 +153,7 @@ public class LoaderSVG implements DocLoader {
 		Vector2d lb = doc.getPaperDomain().getLeftBottom();
 		Vector2d rt = doc.getPaperDomain().getRightTop();
 		Vector2d rb = doc.getPaperDomain().getRightBottom();
-
+		
 		var left = new OriLine(lt, lb, OriLine.Type.CUT);
 		var top = new OriLine(rt, lt, OriLine.Type.CUT);
 		var right = new OriLine(rt, rb, OriLine.Type.CUT);
@@ -192,11 +196,24 @@ public class LoaderSVG implements DocLoader {
 		OrigamiModel origamiModel = modelFactory.createOrigamiModel(
 				creasePattern,
 				pointEps);
+
 		var screenPresenter = new FoldabilityScreenPresenter(
 //				view.getFoldabilityScreenView(),
 				origamiModel,
 				creasePattern,
 				pointEps);
+		screenPresenter.setModel_SVG();
+		violatingVertices = screenPresenter.getViolatingVertices();
+//		System.out.println(violatingVertices);
+//		violatingVertices.toArray();
+		checkVertex = violatingVertices.stream()
+				.distinct()
+				.collect(Collectors.toList());
+		System.out.println(checkVertex);
+		System.out.println("size:" + checkVertex.size());
+		System.out.println("class:" + checkVertex.getClass());
+
+		checkVertex.forEach(v -> System.out.println(v.edgeCount()));
 //		System.out.println(doc.getCreasePattern().toString());
 
 		return doc;

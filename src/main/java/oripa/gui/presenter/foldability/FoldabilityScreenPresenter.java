@@ -82,7 +82,7 @@ public class FoldabilityScreenPresenter {
 				.map(line -> new OriLine(line)).collect(Collectors.toList());
 		this.pointEps = pointEps;
 
-		setModel_SVG();
+//		setModel_SVG();
 
 //		setListeners();
 	}
@@ -91,8 +91,8 @@ public class FoldabilityScreenPresenter {
 
 		violatingVertices = foldabilityChecker.findViolatingVertices(
 				origamiModel.getVertices());
-		System.out.println();
-		System.out.println(violatingVertices.toString());
+//		System.out.println();
+//		System.out.println(violatingVertices.toString());
 		view.setViolatingVertices(violatingVertices);
 
 		violatingFaces = foldabilityChecker.findViolatingFaces(
@@ -106,13 +106,13 @@ public class FoldabilityScreenPresenter {
 
 	}
 
-	private void setModel_SVG() {
+	public void setModel_SVG() {
 
 		violatingVertices = foldabilityChecker.findViolatingVertices(
 				origamiModel.getVertices());
 
-		System.out.println();
-		System.out.println(violatingVertices.toString());
+//		System.out.println();
+//		System.out.println(violatingVertices.toString());
 //		Orivertex pickedViolatingVertex = violatingVertices.stream()
 //				.filter(vertex -> vertex.getPositionBeforeFolding().equals(nearest.point))
 //				.findFirst().get();
@@ -128,6 +128,10 @@ public class FoldabilityScreenPresenter {
 		var domain = new RectangleDomain(creasePattern);
 //		view.updateCenterOfPaper(domain.getCenterX(), domain.getCenterY());
 
+	}
+
+	public Collection<OriVertex> getViolatingVertices() {
+		return violatingVertices;
 	}
 
 	private void setListeners() {

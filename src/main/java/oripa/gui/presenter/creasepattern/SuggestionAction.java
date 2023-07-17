@@ -29,48 +29,48 @@ import oripa.gui.view.creasepattern.ObjectGraphicDrawer;
  * @author OUCHI Koji
  *
  */
-//public class SuggestionAction extends AbstractGraphicMouseAction {
-//
-//	public SuggestionAction() {
-//		super();
-//
-//		setActionState(new SelectingStartPoint());
-//	}
-//
-//	@Override
-//	protected void recoverImpl(final PaintContext context) {
-//		setActionState(new SelectingStartPoint());
-//	}
-//
-//	@Override
-//	public Vector2d onMove(final CreasePatternViewContext viewContext, final PaintContext paintContext,
-//			final boolean differentAction) {
-//		if (paintContext.getVertexCount() == 0) {
-//			return super.onMove(viewContext, paintContext, differentAction);
-//		}
-//
-//		var snapPointOpt = NearestItemFinder.getNearestInSnapPoints(viewContext, paintContext);
-//
-//		if (snapPointOpt.isEmpty()) {
-//			return null;
-//		}
-//
-//		var snapPoint = snapPointOpt.get();
-//		paintContext.setCandidateVertexToPick(snapPoint);
-//		return snapPoint;
-//	}
-//
-//	@Override
-//	public void onDraw(final ObjectGraphicDrawer drawer, final CreasePatternViewContext viewContext,
-//			final PaintContext paintContext) {
-//		if (paintContext.getVertexCount() == 1) {
-//			drawSnapPoints(drawer, viewContext, paintContext);
-//		}
-//
-//		drawTemporaryLine(drawer, viewContext, paintContext);
-//		drawPickCandidateVertex(drawer, viewContext, paintContext);
-//
-//		super.onDraw(drawer, viewContext, paintContext);
-//	}
-//
-//}
+public class SuggestionAction extends AbstractGraphicMouseAction {
+
+	public SuggestionAction() {
+		super();
+
+		setActionState(new SelectingStartPoint());
+	}
+
+	@Override
+	protected void recoverImpl(final PaintContext context) {
+		setActionState(new SelectingStartPoint());
+	}
+
+	@Override
+	public Vector2d onMove(final CreasePatternViewContext viewContext, final PaintContext paintContext,
+			final boolean differentAction) {
+		if (paintContext.getVertexCount() == 0) {
+			return super.onMove(viewContext, paintContext, differentAction);
+		}
+
+		var snapPointOpt = NearestItemFinder.getNearestInSnapPoints(viewContext, paintContext);
+
+		if (snapPointOpt.isEmpty()) {
+			return null;
+		}
+
+		var snapPoint = snapPointOpt.get();
+		paintContext.setCandidateVertexToPick(snapPoint);
+		return snapPoint;
+	}
+
+	@Override
+	public void onDraw(final ObjectGraphicDrawer drawer, final CreasePatternViewContext viewContext,
+			final PaintContext paintContext) {
+		if (paintContext.getVertexCount() == 1) {
+			drawSnapPoints(drawer, viewContext, paintContext);
+		}
+
+		drawTemporaryLine(drawer, viewContext, paintContext);
+		drawPickCandidateVertex(drawer, viewContext, paintContext);
+
+		super.onDraw(drawer, viewContext, paintContext);
+	}
+
+}

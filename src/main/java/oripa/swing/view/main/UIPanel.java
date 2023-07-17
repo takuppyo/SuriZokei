@@ -271,7 +271,7 @@ public class UIPanel extends JPanel implements UIPanelView {
 		toolSettingsPanel.add(lineInputPanel, gbBuilder.getLineField());
 		toolSettingsPanel.add(alterLineTypePanel, gbBuilder.getLineField());
 //		toolSettingsPanel.add(byValuePanel, gbBuilder.getLineField());
-//		toolSettingsPanel.add(angleStepComboPanel, gbBuilder.getLineField());
+		toolSettingsPanel.add(angleStepComboPanel, gbBuilder.getLineField());
 
 		// general settings panel
 		buildGridPanel();
@@ -424,7 +424,7 @@ public class UIPanel extends JPanel implements UIPanelView {
 //		lineInputGroup.add(lineInputByValueButton);
 		lineInputGroup.add(lineInputPBisectorButton);
 		lineInputGroup.add(lineInputAngleSnapButton);
-//		lineInputGroup.add(lineInputSuggestionButton);
+		lineInputGroup.add(lineInputSuggestionButton);
 
 		// put layout together
 		lineInputPanel.setLayout(new GridBagLayout());
@@ -460,7 +460,7 @@ public class UIPanel extends JPanel implements UIPanelView {
 		lineInputPanel.add(lineInputMirrorButton, gbBuilder.getNextField());
 //		lineInputPanel.add(lineInputByValueButton, gbBuilder.getNextField());
 		lineInputPanel.add(lineInputAngleSnapButton, gbBuilder.getNextField());
-//		lineInputPanel.add(lineInputSuggestionButton, gbBuilder.getNextField());
+		lineInputPanel.add(lineInputSuggestionButton, gbBuilder.getNextField());
 
 		// dummies to align buttons left
 		lineInputPanel.add(new JPanel(), gbBuilder.getNextField());
@@ -682,8 +682,8 @@ public class UIPanel extends JPanel implements UIPanelView {
 		setLineInputGlobalShortcut(lineInputAngleSnapButton, KeyStrokes.get(KeyEvent.VK_A),
 				StringID.ANGLE_SNAP_ID);
 
-//		setLineInputGlobalShortcut(lineInputSuggestionButton, KeyStrokes.get(KeyEvent.VK_F),
-//				StringID.SUGGESTION_ID);
+		setLineInputGlobalShortcut(lineInputSuggestionButton, KeyStrokes.get(KeyEvent.VK_F),
+				StringID.SUGGESTION_ID);
 
 		setShortcut(lineTypeMountainButton, KeyStrokes.getWithShiftDown(KeyEvent.VK_M),
 				StringID.UI.MOUNTAIN_ID);
@@ -802,7 +802,7 @@ public class UIPanel extends JPanel implements UIPanelView {
 		setButtonIcon(lineInputMirrorButton, ButtonIcon.MIRROR);
 //		setButtonIcon(lineInputByValueButton, ButtonIcon.BY_VALUE);
 		setButtonIcon(lineInputAngleSnapButton, ButtonIcon.ANGLE_SNAP);
-//		setButtonIcon(lineInputSuggestionButton, ButtonIcon.SUGGESTION);
+		setButtonIcon(lineInputSuggestionButton, ButtonIcon.SUGGESTION);
 	}
 
 	private void setButtonIcon(final AbstractButton button, final ButtonIconResource icon) {
